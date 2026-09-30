@@ -9,6 +9,7 @@ import common.extensions.UserSessionExtension;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 @ExtendWith(UserSessionExtension.class)
 @ExtendWith(BrowserMatchExtension.class)
@@ -20,6 +21,9 @@ public class BaseUiTest extends BaseTest {
         Configuration.baseUrl = Config.getProperty("uiBaseUrl");
         Configuration.browser = Config.getProperty("browser");
         Configuration.browserSize = Config.getProperty("browserSize");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--host-resolver-rules=MAP localhost 192.168.65.254");
+        Configuration.browserCapabilities = options;
         Configuration.headless = true;
     }
 

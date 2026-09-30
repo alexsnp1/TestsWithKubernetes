@@ -34,7 +34,7 @@ jobs: # аналог этапов
         run: bash infra/docker_compose/restart_docker.sh
 
       - name: Build and test
-        run: ./mvnw clean verify
+        run: UIBASEURL=http://nginx:80 ./mvnw clean verify
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
